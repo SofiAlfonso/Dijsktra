@@ -1,3 +1,11 @@
+/**
+ * El programa implementa el algoritmo Dijkstra, usando prgogramación orientada a objetos para analizar el grafos, sus vertices y aristas.
+ * Implementa también el MinPriorityQueue y sus métodos para dar función a Dijkstra.
+ *
+ * @author  Tomás Gañan Rivera y Ana Sofia ALfonso Moncada
+ * @since   2024-05-16
+ */
+
 import graph.G;
 
 /**
