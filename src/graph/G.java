@@ -7,23 +7,25 @@ import java.util.List;
 import java.util.Stack;
 import java.util.ArrayList;
 
+
+
 /**
- * Esta clase se encarga de la creación del grafo, contiene una lista para los vertices V, y una lista para las aristas (la lista contiene en cada índice una lista de adyacencia llena de aristas)
- * Siendo el indice, el mismo que el de el nodo de salida, y la lista adyacencia, las aristas que salen de dicho nodo.
+ * G
+ * Representa un grafo con vértices y aristas, con métodos para calcular el camino más corto utilizando el algoritmo de Dijkstra.
  */
 public class G {
-    // Set of vertices
+    // Conjunto de vértices
     Vertex[] V;
-    // Adjacency list
+    // Lista de adyacencia
     Edge[] adj;
 
     MinPriorityQueue pq;
 
     /**
-     * Permite añadir una arista a la lista
-     * @param u indice de la lista (nodo de salida)
-     * @param v número del nodo de llegada
-     * @param w peso de la arista
+     * Añade una arista al grafo.
+     * @param u Vértice de inicio de la arista.
+     * @param v Vértice de fin de la arista.
+     * @param w Peso de la arista.
      */
     public void addEdge(int u, int v, int w) {
         Edge e = new Edge(v, w);
@@ -32,8 +34,8 @@ public class G {
     }
 
     /**
-     * Paso inicial del algoritmo de Dijkstra, inicializa los  vertices con distancias infinitas y sin predecesores, y al source con distancia 0
-     * @param s número del nodo source
+     * Inicializa la distancia de todos los vértices como infinito, excepto el vértice fuente cuya distancia se establece en 0.
+     * @param s Vértice fuente.
      */
     public void initializeSingleSource(int s) {
         for (int i = 1; i < V.length; i++) {
@@ -42,12 +44,9 @@ public class G {
         V[s].distance = 0;
     }
 
-
     /**
-     * Algoritmo de Dijkstra, visita cada vertice y lo agrega a un Minpriority  queue
-     * para cada vertice en esta (tomando siempre el de menor distancia o peso), relaja sus aristas
-     * y actualiza sus pesos en la Minpriority  queue, partiendo siempre desde el camino más corto ya calculado.
-     * @param s nodo source
+     * Ejecuta el algoritmo de Dijkstra para encontrar el camino más corto desde el vértice fuente a todos los demás vértices.
+     * @param s Vértice fuente.
      */
     public void dijkstra(int s) {
         pq = new MinPriorityQueue(V.length);
@@ -67,6 +66,12 @@ public class G {
         }
     }
 
+    /**
+     * Relaja una arista del grafo, actualizando la distancia mínima al vértice de destino si se encuentra un camino más corto.
+     * @param u Vértice de inicio de la arista.
+     * @param v Vértice de fin de la arista.
+     * @param w Peso de la arista.
+     */
     public void relax(int u, int v, int w) {
         if (V[v].distance > V[u].distance + w) {
             V[v].distance = V[u].distance + w;
@@ -76,10 +81,9 @@ public class G {
     }
 
     /**
-     * Lee el archivo txt, crea el grafo y agrega las aristas a la lista de adyacencia de cada vertice
-     * @param fileName nombre del arcivo txt
+     * Lee el grafo desde un archivo de texto y lo construye.
+     * @param fileName Nombre del archivo que contiene la información del grafo.
      */
-
     public void readGraph(String fileName) {
         try {
             Scanner sc = new Scanner(new File(fileName));
@@ -110,7 +114,7 @@ public class G {
     }
 
     /**
-     * Imprime el resultado final de los vertices luego de Dijkstra, el vertice, predecesor y distancia al source
+     * Imprime los vértices del grafo con el nodo anterior asociado.
      */
     public void printVerticesWithPreviousNode() {
         for (int i = 1; i < V.length; i++) {
@@ -123,7 +127,7 @@ public class G {
     }
 
     /**
-     * Imprime el grafo como un conjunto de listas de adyacencia
+     * Imprime el grafo en forma de lista de adyacencia.
      */
     public void printGraph()
     {
@@ -141,10 +145,10 @@ public class G {
     }
 
     /**
-     * Imprime el camino más corto del source a otro nodo, lo hace siguiendo los predecesores del nodo destino hasta el nodo source.
-     * @param source nodo source
-     * @param destination nodo destino
-     * @return se usa el retorno solo para garantizar que s no hay camino posible, este no se intente imprimir
+     * Encuentra y muestra el camino más corto entre dos nodos del grafo.
+     * @param source Nodo de inicio.
+     * @param destination Nodo de destino.
+     * @return true si hay un camino entre los nodos, false en caso contrario.
      */
     public boolean ShortestPath(int source, int destination) {
         int fnal= destination;
@@ -165,7 +169,5 @@ public class G {
         }
         System.out.println(" | Su peso es de: " + this.V[fnal].distance);
         return true;
-
-
     }
 }

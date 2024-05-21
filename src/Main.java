@@ -1,37 +1,38 @@
 import graph.G;
+
 /**
- * El programa implementa el algoritmo Dijkstra, usando prgogramación orientada a objetos para analizar el grafos, sus vertices y aristas.
- * Implementa Min Priority Queue y algunos de sus métodods, para manejar los nodos con menor peso o distancia que requiere Dijkstra despues de cada relajación.
- *
- * @author  Tomás Gañan Rivera y Ana Sofia ALfonso Moncada
- * @since   2024-05-16
+ * Main
+ * La clase principal que contiene el método principal para ejecutar el programa.
  */
-
-
-
 public class Main {
     /**
- * Se encarga de manejar paso por paso los métodos relacionados con la lectura del grafo, y Dijkstra
- * toma también el tiempo de ejecución del algoritmo.
- * @param args
- */
+     * Método principal que ejecuta el programa.
+     * @param args Argumentos de la línea de comandos (no utilizados).
+     */
     public static void main(String[] args) {
+        // Crear un objeto de la clase G
         G g = new G();
+        // Leer el grafo desde el archivo "graph1.txt"
         g.readGraph("graph1.txt");
 
+        // Imprimir el grafo de entrada
         System.out.println("Grafo de entrada:");
         g.printGraph();
         System.out.println();
 
-        // Imprime el resultado del predecesor y la distancia desde el nodo 1 a todos los demás nodos
+        // Calcular y mostrar el camino más corto desde el nodo 1 a todos los demás nodos
         System.out.println("Camino más corto desde el nodo 1 a todos los demás nodos:");
 
-        long ti= System.nanoTime();
+        // Medir el tiempo de ejecución del algoritmo de Dijkstra
+        long ti = System.nanoTime(); // Tiempo inicial
         g.dijkstra(1);
-        long tf=System.nanoTime();
-        System.out.println("\nTiempo de ejecución (ns):"+(tf-ti)+ "\n");
+        long tf = System.nanoTime(); // Tiempo final
+        System.out.println("\nTiempo de ejecución (ns):" + (tf - ti) + "\n");
 
+        // Imprimir los vértices con su nodo predecesor asociado
         g.printVerticesWithPreviousNode();
+
+        // Calcular y mostrar el camino más corto desde el nodo 1 al nodo 5
         g.ShortestPath(1,5);
     }
 }

@@ -1,13 +1,28 @@
 package graph;
 
 /**
- * Esta clase se encarga de las aristas de cada vertice, así consigna un nodo destino v, el peso de la arista y una referencia a la proxima arista del vertice analizado.
+ * Edge
+ * Representa una arista en un grafo, con un vértice destino, un peso y una referencia a la siguiente arista en la lista.
  */
 class Edge {
-    public int v;      // nodo destino
-    public int w;      // wpeso
-    public Edge next;  // next edge en la lista
+    /**
+     * v: Vértice destino de la arista.
+     */
+    public int v;
+    /**
+     * w: Peso de la arista.
+     */
+    public int w;
+    /**
+     * next: Referencia a la siguiente arista en la lista.
+     */
+    public Edge next;
 
+    /**
+     * Constructor de la clase Edge.
+     * @param v Vértice destino de la arista.
+     * @param w Peso de la arista.
+     */
     public Edge(int v, int w) {
         this.v = v;
         this.w = w;
