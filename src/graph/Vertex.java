@@ -1,5 +1,7 @@
 package graph;
 
+
+
 class Vertex {
     public int number;
     public int distance;
@@ -12,7 +14,4 @@ class Vertex {
         this.pi = pi;
     }
 
-    public String toString() {
-        return number + " " + distance + " " + pi;
-    }
 }
